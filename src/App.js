@@ -5,6 +5,12 @@ import React from "react";
 class App extends React.Component {
   state = { peopleInSpace: [] };
 
+  componentDidMount() {
+  fetch("http://api.open-notify.org/astros.json")
+    .then(res => res.json())
+    .then(({people}) => this.setState({ peopleInSpace: people }));
+}
+
   render() {
     return (
       <div>
@@ -14,14 +20,8 @@ class App extends React.Component {
       </div>
     );
   }
-
-
-  componentDidMount() {
-    fetch("http://api.open-notify.org/astros.json")
-      .then(res => res.json())
-      .then(({people}) => this.setState({ peopleInSpace: people }));
-  }
 }
+
 
 
 export default App;
